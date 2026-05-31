@@ -1,0 +1,30 @@
+{
+  "tests": [
+    {
+      "name": "GET listings list",
+      "method": "GET",
+      "path": "/",
+      "expectedStatus": 200,
+      "expectedBody": {"listings": [], "total": 0},
+      "bodyMatcher": "partial"
+    },
+    {
+      "name": "POST create listing",
+      "method": "POST",
+      "path": "/",
+      "body": {"title": "Тест объявление", "description": "Описание тестового объявления для проверки", "category": "Услуги", "price": "1 000 ₽", "location": "Москва"},
+      "expectedStatus": 201,
+      "expectedBody": {"message": "Объявление опубликовано"},
+      "bodyMatcher": "partial"
+    },
+    {
+      "name": "POST missing fields",
+      "method": "POST",
+      "path": "/",
+      "body": {"title": ""},
+      "expectedStatus": 400,
+      "expectedBody": {"error": "Заголовок, описание и категория обязательны"},
+      "bodyMatcher": "partial"
+    }
+  ]
+}
